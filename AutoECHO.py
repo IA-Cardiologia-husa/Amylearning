@@ -717,7 +717,7 @@ class VolumeCurvesDCM(luigi.Task):
 
 		g['dice avg+1 over avg-1'][...] = reliability_dice1
 		g['dice frame over frame'][...] = reliability_dice2
-		g["normalized variance sum"][...] = normalized_variance_sum
+		# g["normalized variance sum"][...] = normalized_variance_sum
 		g['vol differences'][...] = 1.-(g["volume curve avg-1"][...]-g["volume curve avg+1"][...])/(g["volume curve avg+1"][...]+g["volume curve avg-1"][...])
 
 		reliable_frames = (g['dice avg+1 over avg-1'][...] > 0.8) & (g['dice frame over frame'][...]  > 0.85) & (g['vol differences'][...] > 0.75)
