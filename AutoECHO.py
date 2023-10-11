@@ -172,8 +172,8 @@ class MeasurementsVolumesDCM(luigi.Task):
 				sys_list = lines[1].split(',')
 			except:
 				sys_list = []
-			# dyas_list = np.array(dyas_list, dtype=float).astype(int)
-			# sys_list = np.array(sys_list, dtype=float).astype(int)
+			dyas_list = np.array(dyas_list, dtype=float).astype(int)
+			sys_list = np.array(sys_list, dtype=float).astype(int)
 
 		with open(self.input()['info']['pickle'].path, 'rb') as handle:
 			info = pickle.load(handle)
@@ -270,8 +270,8 @@ class MeasurementsStrainDCM(luigi.Task):
 				sys_list = lines[1].split(',')
 			except:
 				sys_list = []
-			# dyas_list = np.array(dyas_list, dtype=float).astype(int)
-			# sys_list = np.array(sys_list, dtype=float).astype(int)
+			dyas_list = np.array(dyas_list, dtype=float).astype(int)
+			sys_list = np.array(sys_list, dtype=float).astype(int)
 
 		with open(self.input()['info']['pickle'].path, 'rb') as handle:
 			info = pickle.load(handle)
@@ -349,8 +349,8 @@ class ConfidenceCheck(luigi.Task):
 				sys_list = lines[1].split(',')
 			except:
 				sys_list = []
-			# dyas_list = np.array(dyas_list, dtype=float).astype(int)
-			# sys_list = np.array(sys_list, dtype=float).astype(int)
+			dyas_list = np.array(dyas_list, dtype=float).astype(int)
+			sys_list = np.array(sys_list, dtype=float).astype(int)
 
 
 		dice1 = h["dice avg+1 over avg-1"][...]
@@ -440,8 +440,8 @@ class StrainCurves(luigi.Task):
 				sys_list = lines[1].split(',')
 			except:
 				sys_list = []
-			# dyas_list = np.array(dyas_list, dtype=float).astype(int)
-			# sys_list = np.array(sys_list, dtype=float).astype(int)
+			dyas_list = np.array(dyas_list, dtype=float).astype(int)
+			sys_list = np.array(sys_list, dtype=float).astype(int)
 
 		gls_rate = {}
 		rls_rate = {}
@@ -588,8 +588,8 @@ class VolumeGraphs(luigi.Task):
 				sys_list = lines[1].split(',')
 			except:
 				sys_list = []
-			# dyas_list = np.array(dyas_list, dtype=float).astype(int)
-			# sys_list = np.array(sys_list, dtype=float).astype(int)
+			dyas_list = np.array(dyas_list, dtype=float).astype(int)
+			sys_list = np.array(sys_list, dtype=float).astype(int)
 
 
 		fig, ax = plt.subplots(figsize=(20,10))
@@ -954,8 +954,8 @@ class VideoSegmentationDCM(luigi.Task):
 				sys_list = lines[1].split(',')
 			except:
 				sys_list = []
-			# dyas_list = np.array(dyas_list, dtype=float).astype(int)
-			# sys_list = np.array(sys_list, dtype=float).astype(int)
+			dyas_list = np.array(dyas_list, dtype=float).astype(int)
+			sys_list = np.array(sys_list, dtype=float).astype(int)
 
 
 		if info["fps"] is None:
