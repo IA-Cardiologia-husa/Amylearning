@@ -980,12 +980,12 @@ class VideoSegmentationDCM(luigi.Task):
 		height = img.shape[1]
 		width = img.shape[2]
 
-		path = os.path.join(tmp_folder, self.__class__.__name__, self.dcm_name+f'_tmpvideo{"_myo" if self.myo_segmentation else ""}.avi')
+		path = os.path.join(tmp_folder, self.__class__.__name__, self.dcm_name+f'_tmpvideo{"_myo" if self.myo_segmentation else ""}.mp4')
 		try:
 			os.makedirs(os.path.join(tmp_folder,self.__class__.__name__))
 		except:
 			pass
-		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'XVID'), fps/4., (2*width,2*height))
+		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'MP4V'), fps/4., (2*width,2*height))
 		frame_array = np.zeros([2*height, 2*width,3], dtype='uint8')
 		for frame in range(img.shape[0]):
 			img_array = (img[frame,...,0]-img[...,0].min())/(img[...,0].max()-img[...,0].min())
@@ -1092,9 +1092,9 @@ class VideoSegmentationDCM(luigi.Task):
 		except:
 			pass
 		if self.myo_segmentation:
-			return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"segmentation_myo.avi"))
+			return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"segmentation_myo.mp4"))
 		else:
-			return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"segmentation.avi"))
+			return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"segmentation.mp4"))
 
 class VideoTrackingDCM(luigi.Task):
 	dcm_name = luigi.Parameter()
@@ -1136,13 +1136,13 @@ class VideoTrackingDCM(luigi.Task):
 		height = img.shape[1]
 		width = img.shape[2]
 
-		path = os.path.join(tmp_folder, self.__class__.__name__, self.dcm_name+'_tmpvideo.avi')
+		path = os.path.join(tmp_folder, self.__class__.__name__, self.dcm_name+'_tmpvideo.mp4')
 		try:
 			os.makedirs(os.path.join(tmp_folder,self.__class__.__name__))
 		except:
 			pass
 
-		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'XVID'), fps/4., (2*width, 2*height))
+		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'MP4V'), fps/4., (2*width, 2*height))
 		frame_array = np.zeros([2*height, 2*width,3])
 		for frame in range(img.shape[0]-1):
 			img_array = (img[frame,...,0]-img[frame,...,0].min())/(img[frame,...,0].max()-img[frame,...,0].min())
@@ -1187,7 +1187,7 @@ class VideoTrackingDCM(luigi.Task):
 			os.makedirs(os.path.join(report_folder, self.dcm_name,self.__class__.__name__))
 		except:
 			pass
-		return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"strain_field.avi"))
+		return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"strain_field.mp4"))
 
 class VideoTrackingGT(luigi.Task):
 	dcm_name = luigi.Parameter()
@@ -1224,13 +1224,13 @@ class VideoTrackingGT(luigi.Task):
 		h = img.shape[1]
 		w = img.shape[2]
 
-		path = os.path.join(tmp_folder, self.__class__.__name__, self.dcm_name+'_tmpvideo.avi')
+		path = os.path.join(tmp_folder, self.__class__.__name__, self.dcm_name+'_tmpvideo.mp4')
 		try:
 			os.makedirs(os.path.join(tmp_folder,self.__class__.__name__))
 		except:
 			pass
 
-		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'XVID'), fps/4., (2*w, 2*h))
+		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'MP4V'), fps/4., (2*w, 2*h))
 		frame_array = np.zeros([2*h, 2*w,3])
 		for frame in range(img.shape[0]-1):
 
@@ -1371,7 +1371,7 @@ class VideoTrackingGT(luigi.Task):
 			os.makedirs(os.path.join(report_folder, self.dcm_name,self.__class__.__name__))
 		except:
 			pass
-		return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"tracking_gt.avi"))
+		return luigi.LocalTarget(os.path.join(report_folder, self.dcm_name,self.__class__.__name__, f"tracking_gt.mp4"))
 
 class StrainDCM(luigi.Task):
 	dcm_name = luigi.Parameter()
