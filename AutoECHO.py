@@ -1078,6 +1078,7 @@ class VideoSegmentationDCM(luigi.Task):
 			img_arr = np.reshape(np.frombuffer(io_buf.getvalue(), dtype=np.uint8),
 								 newshape=(int(sidey*dpi), int(sidex*dpi), -1))
 			io_buf.close()
+			plt.close()
 			frame_array[height:2*height, width:2*width,:] = img_arr[...,2::-1]
 
 			writer.write(frame_array.astype('uint8'))
@@ -1345,6 +1346,7 @@ class VideoTrackingGT(luigi.Task):
 			img_arr4 = np.reshape(np.frombuffer(io_buf.getvalue(), dtype=np.uint8),
 								 newshape=(int(sidey*dpi), int(sidex*dpi), -1))
 			io_buf.close()
+			plt.close()
 
 			frame_array[0:h, 0:w,:] = img_arr1[...,2::-1]
 			frame_array[0:h, w:2*w,:] = img_arr2[...,2::-1]
