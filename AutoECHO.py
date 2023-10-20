@@ -985,7 +985,7 @@ class VideoSegmentationDCM(luigi.Task):
 			os.makedirs(os.path.join(tmp_folder,self.__class__.__name__))
 		except:
 			pass
-		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'H264'), fps/4., (2*width,2*height))
+		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'MP4V'), fps/4., (2*width,2*height))
 		frame_array = np.zeros([2*height, 2*width,3], dtype='uint8')
 		for frame in range(img.shape[0]):
 			img_array = (img[frame,...,0]-img[...,0].min())/(img[...,0].max()-img[...,0].min())
@@ -1143,7 +1143,7 @@ class VideoTrackingDCM(luigi.Task):
 		except:
 			pass
 
-		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'H264'), fps/4., (2*width, 2*height))
+		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'MP4V'), fps/4., (2*width, 2*height))
 		frame_array = np.zeros([2*height, 2*width,3])
 		for frame in range(img.shape[0]-1):
 			img_array = (img[frame,...,0]-img[frame,...,0].min())/(img[frame,...,0].max()-img[frame,...,0].min())
@@ -1231,7 +1231,7 @@ class VideoTrackingGT(luigi.Task):
 		except:
 			pass
 
-		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'H264'), fps/4., (2*w, 2*h))
+		writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*'MP4V'), fps/4., (2*w, 2*h))
 		frame_array = np.zeros([2*h, 2*w,3])
 		for frame in range(img.shape[0]-1):
 
